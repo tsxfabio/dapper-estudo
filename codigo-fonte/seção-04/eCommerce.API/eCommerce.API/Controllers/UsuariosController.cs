@@ -12,13 +12,19 @@ namespace eCommerce.API.Controllers
         public UsuariosController()
         {
             _repository = new UsuarioRepository();
-            
+
         }
 
         [HttpGet]
         public IActionResult Get()
         {
             return Ok(_repository.GetUsuarios());
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            return Ok(_repository.GetUsuarioById(id));
         }
 
     }
