@@ -32,32 +32,47 @@ namespace eCommerce.API.Repositories
                 Id = 4,
                 Nome = "Marina Neves",
                 Email = "marina.neves@gmail.com"
+            },
+
+            new Usuario()
+            {
+                Id = 5,
+                Nome = "Mariana Campos",
+                Email = "mariana.campos@gmail.com"
+            },
+
+            new Usuario()
+            {
+                Id = 6,
+                Nome = "Thatiana Sant'Anna",
+                Email = "thatiana.santanna@gmail.com"
             }
         };
 
-        public void DeleteUsuario(int id)
+        public IList<Usuario> GetUsuarios()
         {
-            throw new NotImplementedException();
+            return _db;
         }
 
         public Usuario GetUsuarioById(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public IList<Usuario> GetUsuarios()
-        {
-            throw new NotImplementedException();
+            return _db.FirstOrDefault(a => a.Id == id);
         }
 
         public void InsertUsuario(Usuario usuario)
         {
-            throw new NotImplementedException();
+            _db.Add(usuario);
         }
 
         public void UpdateUsuario(int id, Usuario usuario)
         {
-            throw new NotImplementedException();
+            _db.Remove(_db.FirstOrDefault(a => a.Id == usuario.Id));
+            _db.Add(usuario);
+        }
+
+        public void DeleteUsuario(int id)
+        {
+            _db.Remove(_db.FirstOrDefault(a => a.Id == id));
         }
     }
 }

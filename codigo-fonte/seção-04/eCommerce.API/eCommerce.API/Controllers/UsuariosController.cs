@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using eCommerce.API.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eCommerce.API.Controllers
@@ -7,5 +8,18 @@ namespace eCommerce.API.Controllers
     [ApiController]
     public class UsuariosController : ControllerBase
     {
+        private IUsuarioRepository _repository;
+        public UsuariosController()
+        {
+            _repository = new UsuarioRepository();
+            
+        }
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok(_repository.GetUsuarios());
+        }
+
     }
 }
